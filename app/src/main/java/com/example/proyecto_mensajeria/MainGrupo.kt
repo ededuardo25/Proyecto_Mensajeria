@@ -102,7 +102,7 @@ class MainGrupo : AppCompatActivity() {
         val admin = AdminBD(this)
 
         //                                          0       1       2      3
-        val tupla = admin.Consultar("SELECT id_grupo,grupo,nocontrol,docenteid FROM grupo")
+        val tupla = admin.Consultar("SELECT id_grupo,grupo,nocontrol,materiaid,docenteid FROM grupo")
         while (tupla!!.moveToNext()) {
             val idGrup = tupla.getInt(0)
             val grup = tupla.getString(1)

@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SplashActivity"
+        <activity android:name=".MainMensajeria"></activity>
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +25,7 @@
         <activity android:name=".MainGrupo" />
         <activity android:name=".MainRegistro" />
         <activity android:name=".MainAlumno" />
-        <activity android:name=".MainLogin">
-
-        </activity>
+        <activity android:name=".MainLogin"></activity>
     </application>
 
 </manifest>

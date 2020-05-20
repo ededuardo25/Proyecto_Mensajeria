@@ -15,9 +15,14 @@ class AdminBD(context: Context) : SQLiteOpenHelper(context, DataBase, null, 1) {
         db?.execSQL("create table alumno(no_control text primary key,nombre text,semestre text,password text)")
         db?.execSQL("create table materia(id_materia text primary key,nom_materia text,nom_maestro text)")
         db?.execSQL("create table docente(id_doc text primary key,nom_docente text,password text)")
-        db?.execSQL("create table grupo(id_grupo text primary key,grupo text,nocontrol text,materiaid text,docenteid text," +
+        db?.execSQL("create table grupo(id_grupo text primary key,_grupo int,nocontrol text,materiaid text,docenteid text," +
                 "foreign key(nocontrol) references alumno(no_control),foreign key(materiaid) references materia(id_materia)," +
                 "foreign key(docenteid) references docente(id_doc))")
+
+        db?.execSQL("create table mensajes(id_mensaje text primary key,Emisor text,Receptor text,Mensaje text," +
+                "FOREIGN KEY (Emisor) REFERENCES alumno(no_control)," +
+                "FOREIGN KEY (Receptor) REFERENCES alumno(no_control))")
+
 
 
     }

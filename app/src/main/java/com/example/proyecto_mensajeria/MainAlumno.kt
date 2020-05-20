@@ -51,6 +51,7 @@ class MainAlumno : AppCompatActivity() {
 
 
     ////
+
         viewManager = LinearLayoutManager(this)
         viewAdapter = AlumnoAdapter(alumnoList, this, { alu: alumno -> onItemClickListener(alu) })
 
@@ -77,7 +78,7 @@ class MainAlumno : AppCompatActivity() {
                 }
             }
             //El recyclerView
-        }).attachToRecyclerView(rv_grupo_list)
+        }).attachToRecyclerView(rv_alumno_list)
     }
 
 
@@ -85,7 +86,7 @@ class MainAlumno : AppCompatActivity() {
     // Evento clic cuando damos clic en un elemento del Recyclerview
     private fun onItemClickListener(Alum: alumno) {
         Toast.makeText(this, "Clicked item" + Alum.nombre, Toast.LENGTH_LONG).show()
-        val acti:Intent=Intent(this,MainGrupo::class.java)
+        val acti:Intent=Intent(this,MainMensajeria::class.java)
         startActivity(acti)
     }
 
@@ -104,7 +105,7 @@ class MainAlumno : AppCompatActivity() {
         val admin = AdminBD(this)
 
         //                                          0       1       2      3
-        val tupla = admin.Consultar("SELECT no_control,nombre,semestre,password FROM alumno")
+        val tupla = admin.Consultar("SELECT no_control,nombre,semestre,password FROM alumno ORDER BY nombre")
         while (tupla!!.moveToNext()) {
             val nocon = tupla.getString(0)
             val nombre = tupla.getString(1)

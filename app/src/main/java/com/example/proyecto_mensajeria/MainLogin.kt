@@ -39,7 +39,7 @@ class MainLogin : AppCompatActivity() {
             if(result!!.moveToFirst()){
                 control=result.getString(0)
                 pass=result.getString(3)
-                val act1=Intent(this,MainAlumno::class.java)//Si se dirige correctamente ira a la actividad Principal
+                val act1=Intent(this,MainMensajeria::class.java)//Si se dirige correctamente ira a la actividad Principal
                 act1.putExtra(MainAlumno.EXTRA_CONTROL,control)
                 act1.putExtra(MainAlumno.EXTRACONTRA,pass)
                 startActivity(act1)
@@ -57,15 +57,21 @@ class MainLogin : AppCompatActivity() {
     }
 
 
+        //Cargare los alumnos y los grupos a la Base de Datos para que se almacenen al dispositivo
+    fun cargarTODO(v:View){
+            cargar_Alumnos(v)
+            cargar_Grupos(v)
+    }
+
 
     //Lo que hace esta funcion es cargar los datos del MySQL y los sube al dispositivo
     //De otra manera el usuario no podria ingresar si se hizo un cambio en MySQL y no al dispositivo
-    fun cargar_BD(v:View){
+    fun cargar_Alumnos(v:View){
         val wsURL = IP + "/BD_aplicacion/alumno/getAlumnos.php"
         val admin = AdminBD(this)
         admin.Ejecutar("DELETE FROM alumno")
         val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST,wsURL,null,
+            Request.Method.GET,wsURL,null,
             Response.Listener { response ->
                 val succ = response["success"]
                 val msg = response["message"]
@@ -73,13 +79,51 @@ class MainLogin : AppCompatActivity() {
                 for (i in 0 until sensadoJson.length()){
                     // Los nombres del getString son como los arroja el servicio web
                     val nocontrol = sensadoJson.getJSONObject(i).getString("no_control")
-                    val nomalumno = sensadoJson.getJSONObject(i).getString("nombre")
+                    val nomalumno = sensadoJson.getJSONObject(i).getString("nom_alumno")
                     val semestre = sensadoJson.getJSONObject(i).getString("semestre")
                     val contra = sensadoJson.getJSONObject(i).getString("password")
 
-                    val sentencia = "Insert into alumno(no_control,nombre,semestre,password) values (${nocontrol}, '${nomalumno}',${semestre}, ${contra})"
+                    val sentencia = "Insert into alumno(no_control,nombre,semestre,password) values ('${nocontrol}', '${nomalumno}',${semestre}, '${contra}')"
                     val res = admin.Ejecutar(sentencia)
+
+
                 }
+                Toast.makeText(this, "CARGADO ALUMNO", Toast.LENGTH_SHORT).show();
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(this, "Error getAllProductos: " + error.message.toString() , Toast.LENGTH_LONG).show();
+                Log.d("Zazueta",error.message.toString() )
+            }
+        )
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+    }
+
+
+    //CUIDADO ESTOY HACIENDO PRUEBAS CON cargar_Grupos
+    //No olvides cambiar la funcion del boton a cambiar_TODO cuando funcione
+    fun cargar_Grupos(v:View){
+        val wsURL = IP + "/BD_aplicacion/grupo/getGrupos.php"
+        val admin = AdminBD(this)
+        admin.Ejecutar("DELETE FROM grupo")
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET,wsURL,null,
+            Response.Listener { response ->
+                val succ = response["success"]
+                val msg = response["message"]
+                val sensadoJson = response.getJSONArray("grupos")
+                for (i in 0 until sensadoJson.length()){
+                    // Los nombres del getString son como los arroja el servicio web
+                    val idgrupo = sensadoJson.getJSONObject(i).getString("id_grupo")
+                    val grupo = sensadoJson.getJSONObject(i).getString("grupo")
+                    val materiaid = sensadoJson.getJSONObject(i).getString("materiaid")
+                    val docenteid = sensadoJson.getJSONObject(i).getString("docenteid")
+
+                    val sentencia = "Insert into grupo(id_grupo,grupo,nocontrol,materiaid,docenteid) values ('${idgrupo}', '${grupo}','${materiaid}', '${docenteid}')"
+                    val res = admin.Ejecutar(sentencia)
+
+
+                }
+                Toast.makeText(this, "CARGADO GRUPO", Toast.LENGTH_SHORT).show();
             },
             Response.ErrorListener { error ->
                 Toast.makeText(this, "Error getAllProductos: " + error.message.toString() , Toast.LENGTH_LONG).show();
