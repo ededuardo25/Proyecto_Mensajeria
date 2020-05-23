@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Carneros Movil</string>
+    <string name="acceder">Zugreifen</string>
+    <string name="alumnos">Studenten</string>
+    <string name="contrase_a">Passwort</string>
+    <string name="desea_registrarse">Möchten Sie sich registrieren?</string>
+    <string name="grupos">Gruppen</string>
+    <string name="ingresar">ENTEROKAY</string>
+    <string name="ingrese_la_contrase_a">Geben Sie das Passwort ein</string>
+    <string name="ingrese_no_control">Geben Sie No. Control</string>
+    <string name="mensajes">Mitteilungen</string>
+    <string name="nombre_completo">Vollständiger Name</string>
+    <string name="registrarse">Check-In</string>
+    <string name="registro">REGISTRIERUNG</string>
+    <string name="semestre">Semest</string>
+</resources>
