@@ -9,7 +9,9 @@ import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import kotlinx.android.synthetic.main.activity_alumno.*
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_registro.*
 
 class MainLogin : AppCompatActivity() {
 
@@ -39,9 +41,17 @@ class MainLogin : AppCompatActivity() {
             if(result!!.moveToFirst()){
                 control=result.getString(0)
                 pass=result.getString(3)
-                val act1=Intent(this,MainMensajeria::class.java)//Si se dirige correctamente ira a la actividad Principal
+//IR A...
+                //Paso1 Definir variable para que se guarde en  una caja de texto
+                //val noControl = LogControl.text.toString()
+                //Paso2 Se inicializa para mandar a otra activity
+                val act1=Intent(this,MainAlumno::class.java)//Si se dirige correctamente ira a la actividad Principal
                 act1.putExtra(MainAlumno.EXTRA_CONTROL,control)
                 act1.putExtra(MainAlumno.EXTRACONTRA,pass)
+                //Paso3
+                act1.putExtra(MainMensajeria.EMISOR_CONTROL,control)
+
+                //Paso4 Inicio la actividad
                 startActivity(act1)
         //FIN BLOQUE LOGUEO
 
@@ -99,8 +109,10 @@ class MainLogin : AppCompatActivity() {
     }
 
 
+    //getAllProducts
     //CUIDADO ESTOY HACIENDO PRUEBAS CON cargar_Grupos
     //No olvides cambiar la funcion del boton a cambiar_TODO cuando funcione
+    //CORREGIDO,DEJO LOS MENSAJES PARA NO VOLVER A HACERLO XD 20/05/2020
     fun cargar_Grupos(v:View){
         val wsURL = IP + "/BD_aplicacion/grupo/getGrupos.php"
         val admin = AdminBD(this)

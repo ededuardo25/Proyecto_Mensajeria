@@ -32,6 +32,8 @@ class MainAlumno : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alumno)
 
+
+
         ////
         //PARA QUE PUEDA ENTRAR A ESTA DIRECTAMENTE
         val MEregistro=intent
@@ -81,11 +83,12 @@ class MainAlumno : AppCompatActivity() {
         }).attachToRecyclerView(rv_alumno_list)
     }
 
-
 //DIRIGIRSE/REALIZAR ACCION
     // Evento clic cuando damos clic en un elemento del Recyclerview
     private fun onItemClickListener(Alum: alumno) {
+//IR A...
         Toast.makeText(this, "Clicked item" + Alum.nombre, Toast.LENGTH_LONG).show()
+        Toast.makeText(this,"No. Control" +Alum.no_control,Toast.LENGTH_LONG).show()
         val acti:Intent=Intent(this,MainMensajeria::class.java)
         startActivity(acti)
     }

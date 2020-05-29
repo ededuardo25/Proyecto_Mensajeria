@@ -28,7 +28,7 @@ class MainRegistro : AppCompatActivity() {
     }
 
     //El usuario se guarda en la BD local
-    //NOTA: NO SE AGREGA A LA BASE DE DATOS DEL DISPOSITIVO
+    //No se guarda a MySQL
     // Para eso es agregarRegistro(v)
     fun btnregistrar(v: View){
         if (RegControl.text.isEmpty() || RegNombre.text.isEmpty()||RegSemestre.text.isEmpty()||RegContra.text.isEmpty()){

@@ -12,18 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainMensajeria"></activity>
+        <activity android:name=".MainMensajeria"
+            android:parentActivityName=".MainAlumno"></activity>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainGrupo" />
-        <activity android:name=".MainRegistro" />
+        <activity android:name=".MainGrupo"
+            android:parentActivityName=".MainLogin"/>
+        <activity android:name=".MainRegistro"
+            android:parentActivityName=".MainLogin"/>
         <activity android:name=".MainAlumno" />
         <activity android:name=".MainLogin"></activity>
     </application>

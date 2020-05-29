@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">Proyecto_Mensajeria</string>
+    <string name="app_name">Carneros Movil</string>
+    <string name="alumnos">Alumnos</string>
+    <string name="grupos">Grupos:</string>
+    <string name="ingresar">INGRESAR</string>
+    <string name="ingrese_no_control">Ingrese No. Control</string>
+    <string name="ingrese_la_contrase_a">Ingrese la contraseña</string>
+    <string name="desea_registrarse">¿Desea Registrarse?</string>
+    <string name="acceder">ACCEDER</string>
+    <string name="mensajes">Mensajes:</string>
+    <string name="registro">REGISTRO</string>
+    <string name="no_control" translatable="false">No. Control</string>
+    <string name="nombre_completo">Nombre completo</string>
+    <string name="semestre">Semestre</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="registrarse">Registrarse</string>
 </resources>
