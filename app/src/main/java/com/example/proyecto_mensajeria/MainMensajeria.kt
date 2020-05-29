@@ -58,7 +58,7 @@ class MainMensajeria : AppCompatActivity() {
             val Msg = Men_Mensaje.text.toString()
             val Emisor = Men_Emisor.text.toString()
             val Receptor = Men_Receptor.text.toString()
-                                                                                        //Es mi Variable del Companion Object
+                                                   //                                     //Es mi Variable del Companion Object
             val consultaInsert = "Insert into mensajes(Emisor,Receptor,Mensaje) values('$Emisor','$Receptor','$Msg')" //consulta: Variable de la Sentencia
             val admin = AdminBD(this)                                          //admin: Variable que trabaja con la BD
             if (admin.Ejecutar(consultaInsert)==1){
