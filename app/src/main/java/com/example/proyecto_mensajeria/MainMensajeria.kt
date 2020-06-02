@@ -23,8 +23,11 @@ class MainMensajeria : AppCompatActivity() {
 
     companion object{
         //Paso5 Crear un companion object
+        val RECEPTOR_CONTROL="receptor_ctrl"
         val EMISOR_CONTROL="emisor_ctrl"
     }
+
+   //iba aqui
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,30 +39,22 @@ class MainMensajeria : AppCompatActivity() {
     //No se guarda a MySQL
     // Para eso es agregarMensaje(v)
     fun btnEnviar(v: View){
-        //Paso 2
-        //Con esto guarda la variable de la otra activity
-        val res = intent
-        val NoControl = res.getStringExtra(EMISOR_CONTROL)
-/*
-        //Paso 2
-        //Con esto guarda la variable de la otra activity
-        val res = intent
-        if(res !=null && res.hasExtra(EMISOR_CONTROL)){
-            res.getStringExtra(EMISOR_CONTROL)
-        }
-*/
 
-        //
+        //Con esto guarda la variable de la otra activity
+        val res = intent
+        val NoControlEmisor = res.getStringExtra(EMISOR_CONTROL)
+        val NoControlReceptor = res.getStringExtra(RECEPTOR_CONTROL)
+
         if (
             Men_Receptor.text.isEmpty()){
             Toast.makeText(this, "No puedes dejar vació ninguna celda", Toast.LENGTH_SHORT).show();
 
         }else{
             val Msg = Men_Mensaje.text.toString()
-            val Emisor = Men_Emisor.text.toString()
-            val Receptor = Men_Receptor.text.toString()
+            //val Emisor = Men_Emisor.text.toString()
+            //val Receptor = Men_Receptor.text.toString()
                                                    //                                     //Es mi Variable del Companion Object
-            val consultaInsert = "Insert into mensajes(Emisor,Receptor,Mensaje) values('$Emisor','$Receptor','$Msg')" //consulta: Variable de la Sentencia
+            val consultaInsert = "Insert into mensajes(Emisor,Receptor,Mensaje) values('$NoControlEmisor','$NoControlReceptor','$Msg')" //consulta: Variable de la Sentencia
             val admin = AdminBD(this)                                          //admin: Variable que trabaja con la BD
             if (admin.Ejecutar(consultaInsert)==1){
 //REGISTRAR UN USUARIO
@@ -79,11 +74,11 @@ class MainMensajeria : AppCompatActivity() {
 
     //ESTE BOTON SIRVE PARA GUARDAR EL MENSAJE A MYSQL
     fun agregarMensaje(v:View){
-        //Paso 2
+
         //Con esto guarda la variable de la otra activity
         val res = intent
-        val NoControl = res.getStringExtra(EMISOR_CONTROL)
-
+        val NoControlEmisor = res.getStringExtra(EMISOR_CONTROL)
+        val NoControlReceptor = res.getStringExtra(RECEPTOR_CONTROL)
         /*
         //Paso 2
         //Con esto guarda la variable de la otra activity
@@ -92,7 +87,7 @@ class MainMensajeria : AppCompatActivity() {
             res.getStringExtra(EMISOR_CONTROL)
         }
         */
-
+/*
         if (
             Men_Receptor.text.toString().isEmpty()){
             Men_Emisor.setError("Falta información de Ingresar")
@@ -102,16 +97,14 @@ class MainMensajeria : AppCompatActivity() {
         }
         else
         {
-
-
+*/
 
             var jsonEntrada = JSONObject()
-            jsonEntrada.put("Emisor", Men_Emisor.text.toString())
-            jsonEntrada.put("Receptor", Men_Receptor.text.toString())
+            jsonEntrada.put("Emisor", NoControlEmisor)
+            jsonEntrada.put("Receptor", NoControlReceptor)
             jsonEntrada.put("Mensaje", Men_Mensaje.text.toString())
             sendRequest(IP + "/BD_aplicacion/mensajeria/insertMensaje.php",jsonEntrada)
 
-        }
     }
 
     //Rutina para mandar ejecutar un web service de tipo Insert, Update o Delete

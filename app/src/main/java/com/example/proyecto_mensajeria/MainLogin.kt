@@ -49,7 +49,7 @@ class MainLogin : AppCompatActivity() {
                 act1.putExtra(MainAlumno.EXTRA_CONTROL,control)
                 act1.putExtra(MainAlumno.EXTRACONTRA,pass)
                 //Paso3
-                act1.putExtra(MainMensajeria.EMISOR_CONTROL,control)
+                //act1.putExtra(MainMensajeria.EMISOR_CONTROL,control)
 
                 //Paso4 Inicio la actividad
                 startActivity(act1)

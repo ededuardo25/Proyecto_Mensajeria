@@ -87,9 +87,12 @@ class MainAlumno : AppCompatActivity() {
     // Evento clic cuando damos clic en un elemento del Recyclerview
     private fun onItemClickListener(Alum: alumno) {
 //IR A...
+    val Receptor=Alum.no_control
         Toast.makeText(this, "Clicked item" + Alum.nombre, Toast.LENGTH_LONG).show()
         Toast.makeText(this,"No. Control" +Alum.no_control,Toast.LENGTH_LONG).show()
         val acti:Intent=Intent(this,MainMensajeria::class.java)
+        acti.putExtra(MainMensajeria.RECEPTOR_CONTROL,Receptor)
+        acti.putExtra(MainMensajeria.EMISOR_CONTROL,control)
         startActivity(acti)
     }
 
